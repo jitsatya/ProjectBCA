@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".search_activity">
+    <include
+        android:id="@+id/toolBar"
+        layout="@layout/toolbar_layout"/>
+
+        <LinearLayout
+            android:id="@+id/searchLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp">
+
+            <EditText
+                android:id="@+id/searchField"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:padding="10dp"
+                android:background="@drawable/search_edittext_style"
+                android:hint="Enter Your Search Here!"
+                android:inputType="text" />
+
+            <ImageButton
+                android:id="@+id/searchButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="getResult"
+                android:padding="10dp"
+                android:background="?android:selectableItemBackground"
+                android:src="@drawable/ic_search_black_24dp" />
+
+
+        </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_marginTop="2dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolBar"
+        android:id="@+id/search_list">
+
+    </android.support.v7.widget.RecyclerView>
+
+
+
+</RelativeLayout>

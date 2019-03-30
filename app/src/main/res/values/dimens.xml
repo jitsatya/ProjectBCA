@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="sideBorder">24dp</dimen>
+    <dimen name="viewSpacing">18dp</dimen>
+    <dimen name="headerText">48px</dimen>
+</resources>

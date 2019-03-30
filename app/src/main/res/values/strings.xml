@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Nutrition Search</string>
+    <string name="search_food_items_header">Search Food Items</string>
+</resources>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/bottom_nav_home"
+        android:title="Home"
+        android:icon="@drawable/ic_home_black_24dp"
+        />
+
+    <item
+        android:id="@+id/bottom_nav_compare"
+        android:title="Compare"
+        android:icon="@drawable/ic_compare_black_24dp"
+        />
+    <item
+        android:id="@+id/bottom_nav_shoppinglist"
+        android:title="Shopping List"
+        android:icon="@drawable/ic_add_shopping_cart_black_24dp"
+        />
+
+    <item
+        android:id="@+id/bottom_nav_profile"
+        android:title="Profile"
+        android:icon="@drawable/ic_person_black_24dp"
+        />
+
+    <item
+        android:id="@+id/bottom_nav_health"
+        android:title="Health"
+        android:icon="@drawable/ic_accessibility_black_24dp"
+        />
+
+</menu>
