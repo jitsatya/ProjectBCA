@@ -14,19 +14,22 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="8"
-            android:padding="10dp"
-            android:text="Item"
+            android:layout_marginTop="5dp"
+            android:padding="5dp"
+            android:text="Items To Buy"
+            android:textColor="@color/colorPrimary"
             android:textAlignment="center"
-            android:textSize="@dimen/headerText" />
+            android:textSize="18sp" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="3"
-            android:padding="10dp"
-            android:text="Quantity"
+            android:padding="5dp"
+            android:textColor="@color/colorPrimary"
+            android:text="Quantity (grams)"
             android:textAlignment="center"
-            android:textSize="@dimen/headerText" />
+            android:textSize="18sp" />
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
@@ -64,28 +67,28 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
                     android:text="Total Calories: "
-                    android:textSize="@dimen/headerText" />
+                    android:textSize="18sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
                     android:text="Total Protein: "
-                    android:textSize="@dimen/headerText" />
+                    android:textSize="18sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
                     android:text="Total Carbs: "
-                    android:textSize="@dimen/headerText" />
+                    android:textSize="18sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
                     android:text="Total Fat: "
-                    android:textSize="@dimen/headerText" />
+                    android:textSize="18sp" />
 
             </LinearLayout>
 
@@ -102,25 +105,25 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0.00"
-                    android:textSize="@dimen/headerText" />
+                    android:textSize="18sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0.00"
-                    android:textSize="@dimen/headerText" />
+                    android:textSize="18sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0.00"
-                    android:textSize="@dimen/headerText" />
+                    android:textSize="18sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0.00"
-                    android:textSize="@dimen/headerText" />
+                    android:textSize="18sp" />
             </LinearLayout>
         </LinearLayout>
     </RelativeLayout>

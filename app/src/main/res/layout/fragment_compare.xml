@@ -1,10 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="This is the Compare Fragement"
-        android:layout_centerInParent="true"
-        android:textSize="@dimen/headerText"/>
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/compare_headers"
+        android:layout_width="match_parent"
+        android:padding="10dp"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="5"
+            android:textColor="@color/colorPrimary"
+            android:layout_height="wrap_content"
+            android:text="Items"
+            android:gravity="center"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
+            android:text="Protein"
+            android:gravity="center"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
+            android:text="Fat"
+            android:gravity="center"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="wrap_content"
+            android:text="Carbs"
+            android:textColor="@color/colorPrimary"
+            android:gravity="center"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="wrap_content"
+            android:text="Calorie"
+            android:textColor="@color/colorPrimary"
+            android:gravity="center"
+            android:textSize="16sp"/>
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/compare_headers"
+        android:id="@+id/compare_list">
+
+    </android.support.v7.widget.RecyclerView>
 </RelativeLayout>

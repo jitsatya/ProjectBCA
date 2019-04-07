@@ -12,6 +12,7 @@
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:id="@+id/macros_detailed_activity"
     android:layout_below="@+id/toolBar">
     <ImageView
         android:id="@+id/food_image"
@@ -80,5 +81,15 @@
         android:paddingLeft="@dimen/viewSpacing"
         android:textSize="12sp"/>
 </RelativeLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="+"
+        android:textSize="32sp"
+        android:layout_below="@+id/macros_detailed_activity"
+        android:layout_centerInParent="true"
+        android:onClick="ShowOptions"/>
 
 </RelativeLayout>

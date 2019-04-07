@@ -9,9 +9,11 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class ShoppingListAdapter extends RecyclerView.Adapter<ShoppingListAdapter.ShoppingListViewHolder> {
-    private String[] data;
-    public ShoppingListAdapter(String[] data){
+    private ArrayList<String> data;
+    public ShoppingListAdapter(ArrayList<String> data){
             this.data = data;
     }
     @NonNull
@@ -24,13 +26,13 @@ public class ShoppingListAdapter extends RecyclerView.Adapter<ShoppingListAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ShoppingListViewHolder shoppingListViewHolder, int i) {
-            String foodName = data[i];
+            String foodName = data.get(i);
             shoppingListViewHolder.checkItem.setText(foodName);
     }
 
     @Override
     public int getItemCount() {
-        return data.length;
+        return data.size();
     }
 
     public class ShoppingListViewHolder extends RecyclerView.ViewHolder{

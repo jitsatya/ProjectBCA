@@ -2,7 +2,10 @@ package com.projects.satyajit.projectbca;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -14,11 +17,14 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class DetailedActivity extends AppCompatActivity {
+public class DetailedActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
+    DatabaseHelper myDb;
     TextView name, energy, protein, fat, carbohydrate;
     ImageView foodImage;
     Toolbar toolbar;
-    private String ndbno;
+    private String ndbno, mFoodName, mEnergy, mProtien, mFat, mCarbohydrate;
+
+    FragmentShoppingList fragmentShoppingList = new FragmentShoppingList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +41,9 @@ public class DetailedActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Details of " + getIntent().getStringExtra("name"));
         ndbno = getIntent().getStringExtra("ndbno");
-        //Toast.makeText(this, getIntent().getStringExtra("ndbno"), Toast.LENGTH_SHORT).show();
         getData();
+
+        myDb = new DatabaseHelper(this);
     }
 
     private void getData() {
@@ -48,29 +55,27 @@ public class DetailedActivity extends AppCompatActivity {
                 Report report1 = report.getReport();
                 Food food = report1.getFood();
                 name.setText(food.getName());
-                //setting data to PutDataToShoppingListCompare
-                PutDataToShoppingListCompare putDataToShoppingListCompare = new PutDataToShoppingListCompare();
-                putDataToShoppingListCompare.setFoodName(food.getName());
+                mFoodName = food.getName();
                 List<Nutrient> nutrient = food.getNutrients();
                 for(int i=0; i<nutrient.size();i++){
                     int id = Integer.parseInt(nutrient.get(i).getNutrientId());
                     switch (id){
                         case 208:
                             energy.setText("Energy: "+nutrient.get(i).getValue());
+                            mEnergy = nutrient.get(i).getValue();
                         case 203:
                             protein.setText("Protein: "+nutrient.get(i).getValue());
+                            mProtien = nutrient.get(i).getValue();
                         case 204:
                             fat.setText("Fat: " +nutrient.get(i).getValue());
+                            mFat = nutrient.get(i).getValue();
                         case 205:
                             carbohydrate.setText("Carbohydrate: "+nutrient.get(i).getValue());
+                            mCarbohydrate = nutrient.get(i).getValue();
                     }
 
                 }
 
-                // List list = new List();
-                //list = resultList.getList();
-                //recyclerView.setAdapter(new SearchListAdapter(DetailedActivity.this, list.getItem()));
-                //Toast.makeText(DetailedActivity.this, "success!", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -78,5 +83,46 @@ public class DetailedActivity extends AppCompatActivity {
                 Toast.makeText(DetailedActivity.this, "Error Occurred!", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+
+
+
+    public void ShowOptions(View view) {
+        PopupMenu popup = new PopupMenu(this, view);
+        popup.setOnMenuItemClickListener(this);
+        popup.inflate(R.menu.detailed_activity_popup);
+        popup.show();
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem menuItem) {
+        switch (menuItem.getItemId()){
+            case R.id.add_to_shopping_list:
+                boolean isInserted = myDb.insertShoppingListData(ndbno, mFoodName, mEnergy, mProtien, mFat, mCarbohydrate);
+                if(isInserted) {
+                    Toast.makeText(this, "Added to shopping List", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Toast.makeText(this, "Error Occured While Adding to Shoppind List", Toast.LENGTH_SHORT).show();
+                }
+                //fragmentShoppingList.setFoodName(mFoodName);
+
+                return  true;
+
+            case R.id.add_to_compare:
+                boolean isInserted1 = myDb.insertCompareData(ndbno, mFoodName, mEnergy, mProtien, mFat, mCarbohydrate);
+                if(isInserted1) {
+                    Toast.makeText(this, "Added to Compare", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Toast.makeText(this, "Error Occured While Adding to Compare", Toast.LENGTH_SHORT).show();
+                }
+                //fragmentShoppingList.setFoodName(mFoodName);
+
+                return  true;
+             default:
+                 return false;
+        }
     }
 }

@@ -31,7 +31,7 @@ public class UsdaApi {
 
 
     public interface PostService {
-        @GET ("search/?ds=Standard%20Reference&max=25&api_key=" + key )
+        @GET ("search/?ds=Standard%20Reference&max=100&api_key=" + key )
         Call<SearchResult> getFoodList(@Query("q") String q);
         @GET("reports/?api_key=" + key)
         Call<FoodReport> getFoodReport(@Query("ndbno") String ndbno);
