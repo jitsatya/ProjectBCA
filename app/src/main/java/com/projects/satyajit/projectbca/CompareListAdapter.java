@@ -1,20 +1,27 @@
 package com.projects.satyajit.projectbca;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class CompareListAdapter extends RecyclerView.Adapter<CompareListAdapter.CompareListViewHolder> {
+
+    Context context;
+    DatabaseHelper myDb;
     private ArrayList<String> data;
 
-    public CompareListAdapter( ArrayList<String> data) {
+    public CompareListAdapter( Context context, ArrayList<String> data) {
+
         this.data = data;
+        this.context = context;
     }
 
     @NonNull
@@ -25,11 +32,82 @@ public class CompareListAdapter extends RecyclerView.Adapter<CompareListAdapter.
         return new CompareListViewHolder(view);
     }
 
+    //Binding Data to the viewHolder
     @Override
     public void onBindViewHolder(@NonNull CompareListViewHolder compareListViewHolder, int i) {
-        String item = data.get(i);
+        String nbdno = data.get(i);
+        myDb = new DatabaseHelper(context);
+        String[] column = new String[5];
+        column[0]= "NAME";
+        column[1]= "ENERGY";
+        column[2]= "PROTEIN";
+        column[3]= "FAT";
+        column[4]= "CARBOHYDRATE";
+        for(int n= 0;n<column.length; n++){
+        switch (column[n]){
+            case "NAME":
+                Cursor res1 = myDb.getCompareFoodData("NAME", nbdno);
+                if(res1.getCount() ==0){
+                    Toast.makeText(context, "No data available", Toast.LENGTH_SHORT);
+                }
 
-        compareListViewHolder.item.setText(item);
+                while(res1.moveToNext()){
+                    StringBuffer buffer = new StringBuffer();
+                    buffer.append(res1.getString(0));
+                    compareListViewHolder.item.setText(buffer.toString());
+                }
+                break;
+            case "ENERGY":
+                Cursor res2 = myDb.getCompareFoodData( "ENERGY", nbdno);
+                if(res2.getCount() ==0){
+                    Toast.makeText(context, "No data available", Toast.LENGTH_SHORT);
+                }
+
+                while(res2.moveToNext()){
+                    StringBuffer buffer = new StringBuffer();
+                    buffer.append(res2.getString(0));
+                    compareListViewHolder.calories.setText(buffer.toString());
+                }
+                break;
+            case "PROTEIN":
+                Cursor res3 = myDb.getCompareFoodData( "PROTEIN",nbdno);
+                if(res3.getCount() ==0){
+                    Toast.makeText(context, "No data available", Toast.LENGTH_SHORT);
+                }
+
+                while(res3.moveToNext()){
+                    StringBuffer buffer = new StringBuffer();
+                    buffer.append(res3.getString(0));
+                    compareListViewHolder.protein.setText(buffer.toString());
+                }
+                break;
+            case "FAT":
+                Cursor res4 = myDb.getCompareFoodData("FAT",nbdno);
+                if(res4.getCount() ==0){
+                    Toast.makeText(context, "No data available", Toast.LENGTH_SHORT);
+                }
+
+                while(res4.moveToNext()){
+                    StringBuffer buffer = new StringBuffer();
+                    buffer.append(res4.getString(0));
+                    compareListViewHolder.fat.setText(buffer.toString());
+                }
+                break;
+            case "CARBOHYDRATE":
+                Cursor res5 = myDb.getCompareFoodData("CARBOHYDRATE",nbdno);
+                if(res5.getCount() ==0){
+                    Toast.makeText(context, "No data available", Toast.LENGTH_SHORT);
+                }
+
+                while(res5.moveToNext()){
+                    StringBuffer buffer = new StringBuffer();
+                    buffer.append(res5.getString(0));
+                    compareListViewHolder.carbs.setText(buffer.toString());
+                }
+                break;
+        }
+        }
+
     }
 
     @Override

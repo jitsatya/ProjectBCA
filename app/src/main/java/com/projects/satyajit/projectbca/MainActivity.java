@@ -90,18 +90,23 @@ public class MainActivity extends AppCompatActivity {
                     {
                         case R.id.bottom_nav_home:
                             selectedFragment = new FragmentHome();
+                            getSupportActionBar().setTitle("Dashboard");
                             break;
                         case R.id.bottom_nav_compare:
                             selectedFragment = new FragmentCompare();
+                            getSupportActionBar().setTitle("Compare Items");
                             break;
                         case R.id.bottom_nav_shoppinglist:
                             selectedFragment = new FragmentShoppingList();
+                            getSupportActionBar().setTitle("Shopping List");
                             break;
                         case R.id.bottom_nav_profile:
                             selectedFragment = new FragmentProfile();
+                            getSupportActionBar().setTitle("Profile");
                             break;
                         case R.id.bottom_nav_health:
                             selectedFragment = new FragmentHealth();
+                            getSupportActionBar().setTitle("Your Health");
                             break;
 
 

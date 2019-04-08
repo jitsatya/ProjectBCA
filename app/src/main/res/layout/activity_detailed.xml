@@ -28,7 +28,7 @@
         android:maxLines="2"
         android:ellipsize="end"
         android:textColor="@color/colorPrimaryDark"
-        android:paddingLeft="@dimen/viewSpacing"
+        android:paddingLeft="@dimen/viewSpacing6"
         android:textSize="24sp"/>
 
     <TextView
@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:text=" "
         android:layout_toRightOf="@+id/food_image"
-        android:paddingLeft="@dimen/viewSpacing"
+        android:paddingLeft="@dimen/viewSpacing6"
         android:layout_below="@+id/food_name"
         android:textSize="18sp"/>
 
@@ -46,7 +46,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=" "
-        android:paddingLeft="@dimen/viewSpacing"
+        android:paddingLeft="@dimen/viewSpacing6"
         android:layout_toRightOf="@+id/food_image"
         android:layout_below="@+id/energy"
         android:textSize="18sp"/>
@@ -56,7 +56,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=" "
-        android:paddingLeft="@dimen/viewSpacing"
+        android:paddingLeft="@dimen/viewSpacing6"
         android:layout_toRightOf="@+id/food_image"
         android:layout_below="@+id/protein"
         android:textSize="18sp"/>
@@ -66,7 +66,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=" "
-        android:paddingLeft="@dimen/viewSpacing"
+        android:paddingLeft="@dimen/viewSpacing6"
         android:layout_toRightOf="@+id/food_image"
         android:layout_below="@+id/fat"
         android:textSize="18sp"/>
@@ -78,7 +78,7 @@
         android:text="All values per 100grams"
         android:layout_below="@+id/carbohydrate"
         android:textColor="#008000"
-        android:paddingLeft="@dimen/viewSpacing"
+        android:paddingLeft="@dimen/viewSpacing6"
         android:textSize="12sp"/>
 </RelativeLayout>
 

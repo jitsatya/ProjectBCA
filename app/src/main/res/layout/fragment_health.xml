@@ -6,5 +6,5 @@
         android:layout_height="wrap_content"
         android:text="This is the Health Fragement"
         android:layout_centerInParent="true"
-        android:textSize="@dimen/headerText"/>
+        android:textSize="@dimen/heading"/>
 </RelativeLayout>

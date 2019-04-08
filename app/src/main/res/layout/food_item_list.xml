@@ -17,20 +17,23 @@
             android:id="@+id/food_image"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:layout_gravity="center"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"/>
         <RelativeLayout
             android:layout_width="match_parent"
+            android:layout_marginLeft="@dimen/viewSpacing5"
             android:layout_height="wrap_content">
         <TextView
             android:id="@+id/food_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
             android:ellipsize="end"
             android:maxLines="2"
-            android:layout_marginLeft="@dimen/viewSpacing"
+            android:layout_marginLeft="@dimen/viewSpacing6"
             android:text="This is a place holder"
-            android:textSize="@dimen/headerText"
+            android:textSize="@dimen/subheading4"
             />
 
             <TextView
@@ -38,9 +41,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Group name"
-                android:textSize="@dimen/headerText"
+                android:textSize="@dimen/subheading5"
                 android:layout_below="@+id/food_name"
-                android:layout_marginLeft="@dimen/viewSpacing"
+                android:layout_marginLeft="@dimen/viewSpacing6"
                 android:layout_marginTop="10dp"/>
         </RelativeLayout>
 

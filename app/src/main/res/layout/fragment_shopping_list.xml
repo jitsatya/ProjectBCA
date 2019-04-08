@@ -65,6 +65,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="#000"
                     android:layout_gravity="right"
                     android:text="Total Calories: "
                     android:textSize="18sp" />
@@ -72,6 +73,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="#000"
                     android:layout_gravity="right"
                     android:text="Total Protein: "
                     android:textSize="18sp" />
@@ -79,6 +81,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="#000"
                     android:layout_gravity="right"
                     android:text="Total Carbs: "
                     android:textSize="18sp" />
@@ -86,6 +89,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="#000"
                     android:layout_gravity="right"
                     android:text="Total Fat: "
                     android:textSize="18sp" />
@@ -104,24 +108,36 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/total_calories"
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:text="0.00"
                     android:textSize="18sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/total_protein"
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:text="0.00"
                     android:textSize="18sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/total_carbs"
                     android:text="0.00"
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:textSize="18sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/total_fat"
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:text="0.00"
                     android:textSize="18sp" />
             </LinearLayout>

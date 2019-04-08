@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="This is the settings Activity"
-        android:textSize="@dimen/headerText"
+        android:textSize="@dimen/heading"
         android:layout_centerInParent="true"/>
 
 </RelativeLayout>

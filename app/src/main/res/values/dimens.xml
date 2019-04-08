@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="sideBorder">24dp</dimen>
-    <dimen name="viewSpacing">18dp</dimen>
-    <dimen name="headerText">48px</dimen>
+    <dimen name="sideBorder">16dp</dimen>
+    <dimen name="viewSpacing1">24dp</dimen>
+    <dimen name="viewSpacing2">20dp</dimen>
+    <dimen name="viewSpacing3">16dp</dimen>
+    <dimen name="viewSpacing4">12dp</dimen>
+    <dimen name="viewSpacing5">8dp</dimen>
+    <dimen name="viewSpacing6">4dp</dimen>
+    <dimen name="heading">24sp</dimen>
+    <dimen name="subheading1">22sp</dimen>
+    <dimen name="subheading2">20sp</dimen>
+    <dimen name="subheading3">18sp</dimen>
+    <dimen name="subheading4">16sp</dimen>
+    <dimen name="subheading5">14sp</dimen>
+    <dimen name="subheading6">12sp</dimen>
 </resources>

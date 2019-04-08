@@ -1,5 +1,7 @@
 package com.projects.satyajit.projectbca;
 
+import android.content.Context;
+import android.database.Cursor;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,13 +10,17 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class ShoppingListAdapter extends RecyclerView.Adapter<ShoppingListAdapter.ShoppingListViewHolder> {
+    DatabaseHelper myDb;
     private ArrayList<String> data;
-    public ShoppingListAdapter(ArrayList<String> data){
+    Context context;
+    public ShoppingListAdapter(Context context, ArrayList<String> data){
             this.data = data;
+            this.context = context;
     }
     @NonNull
     @Override
@@ -26,8 +32,19 @@ public class ShoppingListAdapter extends RecyclerView.Adapter<ShoppingListAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ShoppingListViewHolder shoppingListViewHolder, int i) {
-            String foodName = data.get(i);
-            shoppingListViewHolder.checkItem.setText(foodName);
+        String nbdno = data.get(i);
+        myDb = new DatabaseHelper(context);
+        Cursor res1 = myDb.getShoppingListFoodData("NAME", nbdno);
+        if(res1.getCount() ==0){
+            Toast.makeText(context, "No data available", Toast.LENGTH_SHORT);
+        }
+
+        while(res1.moveToNext()){
+            StringBuffer buffer = new StringBuffer();
+            buffer.append(res1.getString(0));
+            shoppingListViewHolder.checkItem.setText(buffer.toString());
+        }
+
     }
 
     @Override
