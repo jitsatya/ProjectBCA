@@ -18,6 +18,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.lang.ref.ReferenceQueue;
+import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -29,7 +30,8 @@ public class search_activity extends AppCompatActivity {
     private ImageButton searchButton;
     private String searchKey;
     RecyclerView recyclerView;
-
+    java.util.List <Item> mList = new ArrayList<>();
+    java.util.List <Hit> images = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +48,8 @@ public class search_activity extends AppCompatActivity {
     public void getResult(View view) {
         searchKey = searchField.getText().toString();
         getData();
-
+        getImage();
+        settingAdapter(mList, images);
     }
     private void getData() {
         Call<SearchResult> list = UsdaApi.getService().getFoodList(searchKey);
@@ -54,10 +57,14 @@ public class search_activity extends AppCompatActivity {
             @Override
             public void onResponse(Call<SearchResult> call, Response<SearchResult> response) {
                 SearchResult resultList = response.body();
-                List list = new List();
-                list = resultList.getList();
-                recyclerView.setAdapter(new SearchListAdapter(search_activity.this, list.getItem()));
-                //Toast.makeText(search_activity.this, "success!", Toast.LENGTH_SHORT).show();
+                List list = resultList.getList();
+                if (list==null){
+                    Toast.makeText(search_activity.this, "No food results found!", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    settingItem(list.getItem());
+                    //recyclerView.setAdapter(new SearchListAdapter(search_activity.this, list.getItem(),));
+                }
             }
 
             @Override
@@ -66,6 +73,41 @@ public class search_activity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void getImage() {
+        Call<FoodImage> list = PixabayApi.getService().getFoodImageList(searchKey);
+        list.enqueue(new Callback<FoodImage>() {
+            @Override
+            public void onResponse(Call<FoodImage> call, Response<FoodImage> response) {
+                FoodImage resultList = response.body();
+                if (resultList==null){
+                    Toast.makeText(search_activity.this, "No image results found!", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    settingImage(resultList.getHits());
+                    //recyclerView.setAdapter(new SearchListAdapter(search_activity.this, resultList.getHits());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<FoodImage> call, Throwable t) {
+                Toast.makeText(search_activity.this, "Error Occurred!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+    public void settingItem(java.util.List<Item> items){
+        mList = items;
+        //recyclerView.setAdapter(new SearchListAdapter(search_activity.this, resultList.getHits());
+    }
+    public void settingImage(java.util.List<Hit> images)
+    {
+        this.images = images;
+    }
+
+    public void settingAdapter(java.util.List<Item> items,java.util.List<Hit> images){
+        recyclerView.setAdapter(new SearchListAdapter(search_activity.this, items,images));
     }
 }
 

@@ -12,6 +12,6 @@
     <dimen name="subheading2">20sp</dimen>
     <dimen name="subheading3">18sp</dimen>
     <dimen name="subheading4">16sp</dimen>
-    <dimen name="subheading5">14sp</dimen>
+    <dimen name="subheading5">15sp</dimen>
     <dimen name="subheading6">12sp</dimen>
 </resources>

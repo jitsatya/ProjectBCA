@@ -2,17 +2,25 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="16dp"
-    android:orientation="horizontal">
+    android:paddingTop="@dimen/viewSpacing5"
+    android:paddingRight="@dimen/viewSpacing5"
+    android:paddingLeft="@dimen/viewSpacing5"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
 
     <TextView
         android:layout_width="0dp"
-        android:layout_weight="5"
+        android:layout_weight="6"
         android:layout_height="wrap_content"
         android:textColor="#000"
         android:id="@+id/compare_item_name"
         android:text="Items"
-        android:textSize="16sp"/>
+        android:paddingRight="1dp"
+        android:textSize="@dimen/subheading5"/>
 
     <TextView
         android:layout_width="0dp"
@@ -21,7 +29,7 @@
         android:id="@+id/compare_protein_value"
         android:text="Protein"
         android:gravity="center"
-        android:textSize="16sp"/>
+        android:textSize="@dimen/subheading5"/>
 
     <TextView
         android:layout_width="0dp"
@@ -30,7 +38,7 @@
         android:id="@+id/compare_fat_value"
         android:text="Fat"
         android:gravity="center"
-        android:textSize="16sp"/>
+        android:textSize="@dimen/subheading5"/>
 
     <TextView
         android:layout_width="0dp"
@@ -39,7 +47,7 @@
         android:id="@+id/compare_carbs_value"
         android:text="Carbs"
         android:gravity="center"
-        android:textSize="16sp"/>
+        android:textSize="@dimen/subheading5"/>
 
     <TextView
         android:layout_width="0dp"
@@ -48,6 +56,13 @@
         android:id="@+id/compare_calories_value"
         android:text="Calorie"
         android:gravity="center"
-        android:textSize="16sp"/>
+        android:textSize="@dimen/subheading5"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="@dimen/viewSpacing5"
+        android:background="#50000000"/>
 
 </LinearLayout>

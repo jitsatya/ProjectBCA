@@ -1,6 +1,7 @@
 package com.projects.satyajit.projectbca;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -34,8 +35,9 @@ public class CompareListAdapter extends RecyclerView.Adapter<CompareListAdapter.
 
     //Binding Data to the viewHolder
     @Override
-    public void onBindViewHolder(@NonNull CompareListViewHolder compareListViewHolder, int i) {
-        String nbdno = data.get(i);
+    public void onBindViewHolder(@NonNull final CompareListViewHolder compareListViewHolder, int i) {
+        final String nbdno = data.get(i);
+
         myDb = new DatabaseHelper(context);
         String[] column = new String[5];
         column[0]= "NAME";
@@ -52,7 +54,7 @@ public class CompareListAdapter extends RecyclerView.Adapter<CompareListAdapter.
                 }
 
                 while(res1.moveToNext()){
-                    StringBuffer buffer = new StringBuffer();
+                    final StringBuffer buffer = new StringBuffer();
                     buffer.append(res1.getString(0));
                     compareListViewHolder.item.setText(buffer.toString());
                 }

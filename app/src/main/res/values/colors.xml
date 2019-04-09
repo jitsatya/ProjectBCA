@@ -3,4 +3,5 @@
     <color name="colorPrimary">#D88F22</color>
     <color name="colorPrimaryDark">#A86705</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="light_orage_background">#20F9DD40</color>
 </resources>

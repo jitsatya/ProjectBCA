@@ -39,7 +39,7 @@ public class FragmentShoppingList extends Fragment {
         myDb = new DatabaseHelper(this.getContext());
         Cursor res = myDb.getShoppingListFoodNbdno();
             if(res.getCount() ==0){
-                Toast.makeText(this.getContext(), "No data available", Toast.LENGTH_SHORT);
+                Toast.makeText(this.getContext(), "There are no items in the Shopping List", Toast.LENGTH_SHORT).show();
             }
 
             while(res.moveToNext()){

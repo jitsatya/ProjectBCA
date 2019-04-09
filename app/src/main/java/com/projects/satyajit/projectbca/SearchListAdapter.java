@@ -11,18 +11,21 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 
 public class SearchListAdapter extends RecyclerView.Adapter<SearchListAdapter.SearchListViewHolder> {
     private Context context;
     private List<Item> items;
-    //SearchResult getlist = new SearchResult();
+    private List<Hit> images;
 
 
-    public SearchListAdapter(Context context, List<Item> items) {
+    public SearchListAdapter(Context context, List<Item> items, List<Hit> images) {
         this.context = context;
         this.items = items;
+        this.images=images;
     }
 
     @NonNull
@@ -37,8 +40,10 @@ public class SearchListAdapter extends RecyclerView.Adapter<SearchListAdapter.Se
     @Override
     public void onBindViewHolder(@NonNull SearchListViewHolder searchListViewHolder, int position) {
             final Item item = items.get(position);
+            final Hit image = images.get(position);
             searchListViewHolder.foodName.setText(item.getName());
-            searchListViewHolder.foodImage.setImageResource(R.drawable.placeholder_image);
+        Glide.with(context).load(image.getPreviewURL()).into(searchListViewHolder.foodImage);
+            //searchListViewHolder.foodImage.setImageResource(R.drawable.placeholder_image);
             searchListViewHolder.foodGroupName.setText(item.getGroup());
             searchListViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -46,6 +51,7 @@ public class SearchListAdapter extends RecyclerView.Adapter<SearchListAdapter.Se
                     Intent intent= new Intent(context,DetailedActivity.class);
                     intent.putExtra("ndbno", item.getNdbno());
                     intent.putExtra("name", item.getName());
+                    intent.putExtra("image",image.getWebformatURL());
                     context.startActivity(intent);
                 }
             });

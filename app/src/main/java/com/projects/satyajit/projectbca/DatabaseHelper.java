@@ -14,6 +14,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COMPARE = "compare_items";
     public static final String USER_DETAILS = "user_details";
     //Table columns for SHOPPINGLIST and COMPARE
+    public static final String SL_NO = "SL_NO";
     public static final String NBDNO = "NBDNO";
     public static final String NAME = "NAME";
     public static final String ENERGY = "ENERGY";
@@ -36,11 +37,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, 4);
     }
     //ShoppingList creation SQL
-    public static  final String SQL_CREATE_TABLE_SHOPPINGLIST = "create table " + SHOPPINGLIST + "(" + NBDNO + " INTEGER PRIMARY KEY, " +NAME+
-            " TEXT, "+ENERGY+" INTEGER, "+PROTEIN+" INTEGER, "+FAT+" INTEGER, "+CARBOHYDRATE+" INTEGER )";
+    public static  final String SQL_CREATE_TABLE_SHOPPINGLIST = "create table " + SHOPPINGLIST + "(" + NBDNO + " INTEGER PRIMARY KEY, " +SL_NO+" INTEGER, "+NAME+
+            " TEXT, "+ENERGY+" INTEGER, "+PROTEIN+" INTEGER, "+FAT+" INTEGER, "+CARBOHYDRATE+" INTEGER  )";
 
     //Compare creation SQL
-    public static  final String SQL_CREATE_TABLE_COMPARE = "create table " + COMPARE + "(" + NBDNO + " INTEGER PRIMARY KEY, " +NAME+
+    public static  final String SQL_CREATE_TABLE_COMPARE = "create table " + COMPARE + "(" + NBDNO + " INTEGER PRIMARY KEY, " +SL_NO+" INTEGER, " +NAME+
             " TEXT, "+ENERGY+" INTEGER, "+PROTEIN+" INTEGER, "+FAT+" INTEGER, "+CARBOHYDRATE+" INTEGER )";
     //user_details creation SQL
     public static  final String SQL_CREATE_TABLE_USER_DETAILS = "create table " + USER_DETAILS + "(" + USERNAME + " TEXT PRIMARY KEY, " +F_NAME+
@@ -81,7 +82,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public boolean insertShoppingListData(String nbdno, String name, String energy, String protein, String fat, String carbohydrate){
+    public boolean insertShoppingListData(String nbdno,String name, String energy, String protein, String fat, String carbohydrate){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(NBDNO, nbdno);

@@ -11,6 +11,8 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 import retrofit2.Call;
@@ -19,11 +21,10 @@ import retrofit2.Response;
 
 public class DetailedActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
     DatabaseHelper myDb;
-    TextView name, energy, protein, fat, carbohydrate;
+    TextView name, energy, protein, fat, carbohydrate, measureText;
     ImageView foodImage;
     Toolbar toolbar;
-    private String ndbno, mFoodName, mEnergy, mProtien, mFat, mCarbohydrate;
-
+    private String ndbno, imageUrl, mFoodName, mEnergy, mProtien, mFat, mCarbohydrate;
     FragmentShoppingList fragmentShoppingList = new FragmentShoppingList();
 
     @Override
@@ -36,14 +37,18 @@ public class DetailedActivity extends AppCompatActivity implements PopupMenu.OnM
         fat = findViewById(R.id.fat);
         carbohydrate = findViewById(R.id.carbohydrate);
         foodImage = findViewById(R.id.food_image);
-        foodImage.setImageResource(R.drawable.placeholder_image);
+        measureText = findViewById(R.id.measure_text);
+        measureText.setVisibility(View.INVISIBLE);
+        //foodImage.setImageResource(R.drawable.placeholder_image);
         toolbar = findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
+        myDb = new DatabaseHelper(this);
         getSupportActionBar().setTitle("Details of " + getIntent().getStringExtra("name"));
         ndbno = getIntent().getStringExtra("ndbno");
+        imageUrl = getIntent().getStringExtra("image");
+        Glide.with(this).load(imageUrl).into(foodImage);
         getData();
 
-        myDb = new DatabaseHelper(this);
     }
 
     private void getData() {
@@ -75,7 +80,7 @@ public class DetailedActivity extends AppCompatActivity implements PopupMenu.OnM
                     }
 
                 }
-
+                measureText.setVisibility(View.VISIBLE);
             }
 
             @Override
@@ -99,7 +104,8 @@ public class DetailedActivity extends AppCompatActivity implements PopupMenu.OnM
     public boolean onMenuItemClick(MenuItem menuItem) {
         switch (menuItem.getItemId()){
             case R.id.add_to_shopping_list:
-                boolean isInserted = myDb.insertShoppingListData(ndbno, mFoodName, mEnergy, mProtien, mFat, mCarbohydrate);
+
+                boolean isInserted = myDb.insertShoppingListData(ndbno,mFoodName, mEnergy, mProtien, mFat, mCarbohydrate);
                 if(isInserted) {
                     Toast.makeText(this, "Added to shopping List", Toast.LENGTH_SHORT).show();
                 }
@@ -125,4 +131,5 @@ public class DetailedActivity extends AppCompatActivity implements PopupMenu.OnM
                  return false;
         }
     }
+
 }

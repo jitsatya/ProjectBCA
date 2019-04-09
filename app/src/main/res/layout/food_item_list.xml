@@ -11,12 +11,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="10dp">
+        android:padding="@dimen/viewSpacing6">
 
         <ImageView
             android:id="@+id/food_image"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:src="@drawable/placeholder_image"
             android:layout_gravity="center"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"/>

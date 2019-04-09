@@ -1,27 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="10dp"
-    android:layout_marginRight="10dp">
+
+    >
+    <LinearLayout
+        android:id="@+id/item_layout"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingRight="@dimen/viewSpacing5"
+        android:paddingTop="@dimen/viewSpacing6"
+        android:paddingLeft="@dimen/viewSpacing5"
+        android:paddingBottom="@dimen/viewSpacing6">
 
     <CheckBox
         android:id="@+id/item_checkbox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:padding="5dp"
-        android:layout_weight="8"
+        android:padding="@dimen/viewSpacing6"
+        android:layout_weight="10"
         android:text="placeholder"
+        android:layout_gravity="start"
         android:maxLines="3"
         android:ellipsize="end"
-        android:textSize="16sp"/>
+        android:textSize="@dimen/subheading5"/>
     <EditText
         android:id="@+id/item_edittext"
         android:layout_width="0dp"
         android:text="100"
+        android:textSize="@dimen/subheading4"
+        android:layout_gravity="center"
+        android:background="@drawable/shopping_list_quantity_style"
         android:layout_height="wrap_content"
         android:layout_weight="3"/>
-
-
 </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:id="@+id/jjj"
+        android:background="#50000000"
+        android:layout_below="@id/item_layout"/>
+
+
+</RelativeLayout>
