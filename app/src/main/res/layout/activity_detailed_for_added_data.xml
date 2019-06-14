@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DetailedActivityForAddedData">
+    <include
+        android:id="@+id/toolBar"
+        layout="@layout/toolbar_layout"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/macros_detailed_activity"
+        android:layout_below="@+id/toolBar">
+        <ImageView
+            android:id="@+id/food_image"
+            android:layout_width="150dp"
+            android:paddingLeft="@dimen/viewSpacing6"
+            android:paddingTop="@dimen/viewSpacing6"
+            android:scaleType="centerCrop"
+            android:layout_height="150dp"/>
+
+        <TextView
+            android:id="@+id/food_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/food_image"
+            android:text=" "
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:textColor="@color/colorPrimaryDark"
+            android:paddingLeft="@dimen/viewSpacing6"
+            android:textSize="@dimen/subheading3"/>
+
+        <TextView
+            android:id="@+id/energy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" "
+            android:layout_toRightOf="@+id/food_image"
+            android:paddingLeft="@dimen/viewSpacing6"
+            android:layout_below="@+id/food_name"
+            android:textSize="@dimen/subheading4"/>
+
+        <TextView
+            android:id="@+id/protein"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" "
+            android:paddingLeft="@dimen/viewSpacing6"
+            android:layout_toRightOf="@+id/food_image"
+            android:layout_below="@+id/energy"
+            android:textSize="@dimen/subheading4"/>
+
+        <TextView
+            android:id="@+id/fat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" "
+            android:paddingLeft="@dimen/viewSpacing6"
+            android:layout_toRightOf="@+id/food_image"
+            android:layout_below="@+id/protein"
+            android:textSize="@dimen/subheading4"/>
+
+        <TextView
+            android:id="@+id/carbohydrate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" "
+            android:paddingLeft="@dimen/viewSpacing6"
+            android:layout_toRightOf="@+id/food_image"
+            android:layout_below="@+id/fat"
+            android:textSize="@dimen/subheading4"/>
+        <TextView
+            android:id="@+id/measure_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/food_image"
+            android:text="All values per 100grams"
+            android:layout_below="@+id/carbohydrate"
+            android:textColor="#008000"
+            android:paddingLeft="@dimen/viewSpacing6"
+            android:textSize="@dimen/subheading6"/>
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

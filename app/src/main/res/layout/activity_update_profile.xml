@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UpdateProfile">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Please Update Your Profile"
+            android:textColor="@color/colorPrimary"
+            android:layout_gravity="center"
+            android:textSize="@dimen/subheading1"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/viewSpacing5"
+            android:text="Email: "
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/subheading3"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/update_email_field"
+            android:layout_marginBottom="@dimen/viewSpacing4"
+            android:layout_marginLeft="30dp"
+            android:background="@drawable/form_edit_text_style"
+            android:inputType="textEmailAddress"
+            android:layout_marginRight="30dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/viewSpacing5"
+            android:text="Age: "
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/subheading3"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/update_age_field"
+            android:layout_marginBottom="@dimen/viewSpacing4"
+            android:layout_marginLeft="30dp"
+            android:inputType="textPassword"
+            android:background="@drawable/form_edit_text_style"
+            android:layout_marginRight="30dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/viewSpacing5"
+            android:text="Height: "
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/subheading3"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/update_hight_field"
+            android:layout_marginLeft="30dp"
+            android:background="@drawable/form_edit_text_style"
+            android:layout_marginRight="30dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/viewSpacing5"
+            android:text="Weight: "
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/subheading3"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/update_weight_field"
+            android:inputType="textPassword"
+            android:layout_marginLeft="30dp"
+            android:background="@drawable/form_edit_text_style"
+            android:layout_marginRight="30dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/viewSpacing5"
+            android:text="gender: "
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/subheading3"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/update_gender_field"
+            android:layout_marginLeft="30dp"
+            android:background="@drawable/form_edit_text_style"
+            android:layout_marginRight="30dp"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/update_profile_button"
+            android:layout_marginTop="@dimen/viewSpacing2"
+            android:text="Update"
+            android:layout_gravity="center"
+            android:background="@color/colorPrimary"
+            android:textColor="#FFF"/>
+    </LinearLayout>
+
+</RelativeLayout>
