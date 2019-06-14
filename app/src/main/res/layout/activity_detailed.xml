@@ -1,32 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".DetailedActivity">
     <include
         android:id="@+id/toolBar"
-        layout="@layout/toolbar_layout"/>
+        layout="@layout/toolbar_layout"
+        />
 
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/macros_detailed_activity"
     android:layout_below="@+id/toolBar">
-    <ImageView
-        android:id="@+id/food_image"
+
+    <android.support.v7.widget.CardView
         android:layout_width="150dp"
-        android:paddingLeft="@dimen/viewSpacing6"
-        android:paddingTop="@dimen/viewSpacing6"
-        android:scaleType="centerCrop"
-        android:layout_height="150dp"/>
+        android:layout_height="150dp"
+        android:layout_marginLeft="@dimen/sideBorder"
+        android:layout_marginTop="@dimen/sideBorder"
+        android:layout_marginRight="@dimen/viewSpacing3"
+        android:id="@+id/card"
+        app:cardCornerRadius="4dp">
+        <ImageView
+            android:id="@+id/food_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            />
+    </android.support.v7.widget.CardView>
+
 
     <TextView
         android:id="@+id/food_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/food_image"
+        android:layout_toRightOf="@+id/card"
+        android:layout_marginTop="@dimen/sideBorder"
         android:text=" "
         android:maxLines="2"
         android:ellipsize="end"
@@ -39,7 +51,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=" "
-        android:layout_toRightOf="@+id/food_image"
+        android:layout_toRightOf="@+id/card"
         android:paddingLeft="@dimen/viewSpacing6"
         android:layout_below="@+id/food_name"
         android:textSize="@dimen/subheading4"/>
@@ -50,7 +62,7 @@
         android:layout_height="wrap_content"
         android:text=" "
         android:paddingLeft="@dimen/viewSpacing6"
-        android:layout_toRightOf="@+id/food_image"
+        android:layout_toRightOf="@+id/card"
         android:layout_below="@+id/energy"
         android:textSize="@dimen/subheading4"/>
 
@@ -60,7 +72,7 @@
         android:layout_height="wrap_content"
         android:text=" "
         android:paddingLeft="@dimen/viewSpacing6"
-        android:layout_toRightOf="@+id/food_image"
+        android:layout_toRightOf="@+id/card"
         android:layout_below="@+id/protein"
         android:textSize="@dimen/subheading4"/>
 
@@ -70,30 +82,89 @@
         android:layout_height="wrap_content"
         android:text=" "
         android:paddingLeft="@dimen/viewSpacing6"
-        android:layout_toRightOf="@+id/food_image"
+        android:layout_toRightOf="@+id/card"
         android:layout_below="@+id/fat"
         android:textSize="@dimen/subheading4"/>
     <TextView
         android:id="@+id/measure_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/food_image"
+        android:layout_toRightOf="@+id/card"
         android:text="All values per 100grams"
         android:layout_below="@+id/carbohydrate"
         android:textColor="#008000"
         android:paddingLeft="@dimen/viewSpacing6"
         android:textSize="@dimen/subheading6"/>
+
+
 </RelativeLayout>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
+        android:id="@+id/button_add"
         android:text="+"
         android:textSize="32sp"
         android:background="@color/colorPrimary"
         android:layout_below="@+id/macros_detailed_activity"
         android:layout_centerInParent="true"
         android:onClick="ShowOptions"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/sideBorder"
+        android:paddingTop="@dimen/viewSpacing5"
+        android:layout_marginRight="@dimen/sideBorder"
+        android:id="@+id/detailed_nutitional_facts"
+        android:layout_below="@+id/button_add"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/nutritional_facts_table_header"
+            android:text="Complete Nutritional Facts"
+            android:textSize="@dimen/subheading3"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/nutritional_facts_table_item"
+            android:layout_below="@+id/nutritional_facts_table_header"
+            android:text="Name of the item"
+            android:textSize="@dimen/subheading4"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/table_columns"
+            android:layout_below="@+id/nutritional_facts_table_item"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="7"
+                android:layout_height="wrap_content"
+                android:text="Nutrition"
+                android:textSize="@dimen/subheading5"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:layout_height="wrap_content"
+                android:text="Value"
+                android:textSize="@dimen/subheading5"/>
+        </LinearLayout>
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/nutrition_table"
+            android:layout_below="@+id/table_columns">
+
+        </ListView>
+    </RelativeLayout>
+
 
 </RelativeLayout>
+

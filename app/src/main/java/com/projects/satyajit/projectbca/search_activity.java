@@ -1,9 +1,13 @@
 package com.projects.satyajit.projectbca;
 
+import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,13 +15,14 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.lang.ref.ReferenceQueue;
 import java.util.ArrayList;
 
 import retrofit2.Call;
@@ -28,10 +33,15 @@ public class search_activity extends AppCompatActivity {
     private EditText searchField;
     private TextView displayResults;
     private ImageButton searchButton;
+    FloatingActionButton addFood;
+    Toolbar toolbar;
     private String searchKey;
-    RecyclerView recyclerView;
+    RecyclerView recyclerView, userAddedRecyclerView;
     java.util.List <Item> mList = new ArrayList<>();
     java.util.List <Hit> images = new ArrayList<>();
+    java.util.List<FoodItemToFirebase> items = new ArrayList<>();
+    private UserAddedSearchListAdapter userAddedSearchListAdapter;
+    private DatabaseReference dbUserAddedfood;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,18 +49,38 @@ public class search_activity extends AppCompatActivity {
         setContentView(R.layout.activity_search_activity);
         recyclerView =(RecyclerView)findViewById(R.id.search_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        userAddedRecyclerView = findViewById(R.id.searchList_userAdded);
+        userAddedRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         searchField = (EditText) findViewById(R.id.searchField);
         searchButton = (ImageButton) findViewById(R.id.searchButton);
+        addFood = findViewById(R.id.add_food);
+        addFood.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(search_activity.this,AddFoodToFirebase.class);
+                startActivity(intent);
+            }
+        });
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchKey = searchField.getText().toString();
+                getData();
 
+            }
+        });
+        toolbar = findViewById(R.id.toolBar);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
     }
 
-    public void getResult(View view) {
-        searchKey = searchField.getText().toString();
-        getData();
-        getImage();
-        settingAdapter(mList, images);
-    }
     private void getData() {
         Call<SearchResult> list = UsdaApi.getService().getFoodList(searchKey);
         list.enqueue(new Callback<SearchResult>() {
@@ -72,6 +102,9 @@ public class search_activity extends AppCompatActivity {
                 Toast.makeText(search_activity.this, "Error Occurred!", Toast.LENGTH_SHORT).show();
             }
         });
+        getImage();
+        settingAdapter(mList, images);
+        getUserAddedData();
 
     }
 
@@ -99,7 +132,6 @@ public class search_activity extends AppCompatActivity {
     }
     public void settingItem(java.util.List<Item> items){
         mList = items;
-        //recyclerView.setAdapter(new SearchListAdapter(search_activity.this, resultList.getHits());
     }
     public void settingImage(java.util.List<Hit> images)
     {
@@ -108,6 +140,36 @@ public class search_activity extends AppCompatActivity {
 
     public void settingAdapter(java.util.List<Item> items,java.util.List<Hit> images){
         recyclerView.setAdapter(new SearchListAdapter(search_activity.this, items,images));
+        userAddedSearchListAdapter = new UserAddedSearchListAdapter(this, this.items);
+        userAddedRecyclerView.setAdapter(userAddedSearchListAdapter);
+    }
+    public  void getUserAddedData(){
+        ValueEventListener valueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                items.clear();
+                if (dataSnapshot.exists()){
+                    for (DataSnapshot snapshot: dataSnapshot.getChildren()){
+                        FoodItemToFirebase foodItemToFirebase = snapshot.getValue(FoodItemToFirebase.class);
+                        items.add(foodItemToFirebase);
+                    }
+                    userAddedSearchListAdapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        };
+        dbUserAddedfood = FirebaseDatabase.getInstance().getReference("FoodDataBase");
+
+        Query query = FirebaseDatabase.getInstance().getReference("FoodDataBase")
+                .orderByChild("name")
+                .startAt(searchKey)
+                .endAt(searchKey+"\uf8ff");
+
+        query.addListenerForSingleValueEvent(valueEventListener);
     }
 }
 

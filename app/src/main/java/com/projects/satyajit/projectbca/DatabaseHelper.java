@@ -13,6 +13,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String SHOPPINGLIST = "Shopping_list_items";
     public static final String COMPARE = "compare_items";
     public static final String USER_DETAILS = "user_details";
+    public static final String SEARCH_HISTORY = "search_history";
     //Table columns for SHOPPINGLIST and COMPARE
     public static final String SL_NO = "SL_NO";
     public static final String NBDNO = "NBDNO";
@@ -30,11 +31,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DATE_OF_BIRTH = "Date_Of_Birth";
     public static final String HEIGHT = "Height";
     public static final String WEIGHT = "Weight";
+    //Table columns for History  TABLE
+    public static final String DATE_TIME= "Date_Of_Search";
+    public static final String IMAGE_URL= "Image_url";
+
 
 
         //creating the database
     public DatabaseHelper(Context context) {
-        super(context, DATABASE_NAME, null, 4);
+        super(context, DATABASE_NAME, null, 8);
     }
     //ShoppingList creation SQL
     public static  final String SQL_CREATE_TABLE_SHOPPINGLIST = "create table " + SHOPPINGLIST + "(" + NBDNO + " INTEGER PRIMARY KEY, " +SL_NO+" INTEGER, "+NAME+
@@ -46,12 +51,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     //user_details creation SQL
     public static  final String SQL_CREATE_TABLE_USER_DETAILS = "create table " + USER_DETAILS + "(" + USERNAME + " TEXT PRIMARY KEY, " +F_NAME+
             " TEXT, "+L_NAME+" TEXT, "+EMAIL+" TEXT, "+PASSWORD+" TEXT, "+DATE_OF_BIRTH+" TEXT, " + HEIGHT+" INTEGER, " +WEIGHT+" INTEGER )";
+    //History creation SQl
+    public static  final String SQL_CREATE_TABLE_SEARCH_HISTORY = "create table " + SEARCH_HISTORY + "(" + SL_NO +" INTEGER PRIMARY KEY AUTOINCREMENT, "+ NBDNO + " TEXT, " +NAME + " TEXT, " + IMAGE_URL +
+            " TEXT, " +DATE_TIME+" TEXT)";
         //creating the table
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(SQL_CREATE_TABLE_COMPARE);
         db.execSQL(SQL_CREATE_TABLE_SHOPPINGLIST);
-        db.execSQL(SQL_CREATE_TABLE_USER_DETAILS);
+//        db.execSQL(SQL_CREATE_TABLE_USER_DETAILS);
+        db.execSQL(SQL_CREATE_TABLE_SEARCH_HISTORY);
+
     }
         //updating the table
     @Override
@@ -118,6 +128,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    public boolean insertSearchHistory(String nbdno, String name, String imageUrl, String date){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(NBDNO, nbdno);
+        contentValues.put(NAME, name);
+        contentValues.put(IMAGE_URL, imageUrl);
+        contentValues.put(DATE_TIME, date);
+        long result = db.insert(SEARCH_HISTORY, null, contentValues);
+        if(result == -1){
+            return false;
+        }
+        else
+        {return true;
+        }
+    }
+
     public boolean verifyUser(String username, String password){
         String selectQuery = "select * from "+ USER_DETAILS +
                 " where "+ USERNAME +" = " + "'"+ username +"'" +" and " + PASSWORD + " = " +"'"+password+"'";
@@ -151,6 +177,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Cursor getShoppingListFoodData (String column, String nbdno){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor res = db.rawQuery("select "+column+" from "+ SHOPPINGLIST + " where NBDNO = " + nbdno, null);
+        return  res;
+    }
+
+    public Cursor getHomeItemSlNo (){
+        SQLiteDatabase db = this.getWritableDatabase();
+        //SELECT SLNO FROM SEARCH_HISTORY ORDER BY SLNO ASC/DESC
+        Cursor res = db.rawQuery("select "+"SL_NO"+" from "+ SEARCH_HISTORY + " ORDER BY SL_NO DESC" , null);
+        return  res;
+    }
+
+    public Cursor getHomeFoodData(String column, String slNo){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("select "+column+" from "+ SEARCH_HISTORY + " where SL_NO = " + slNo, null);
         return  res;
     }
     /*public Cursor removeFoodFromList(String name){

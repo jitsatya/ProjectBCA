@@ -34,6 +34,8 @@
         android:background="@drawable/shopping_list_quantity_style"
         android:layout_height="wrap_content"
         android:layout_weight="3"/>
+
+
 </LinearLayout>
     <View
         android:layout_width="match_parent"

@@ -2,11 +2,114 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/profile_relative_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/user_details_layout">
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="@dimen/viewSpacing2"
+                android:layout_marginLeft="@dimen/sideBorder"
+                android:id="@+id/user_image"
+                android:scaleType="centerCrop"
+                android:src="@drawable/sunil_profile"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/user_image"
+                android:id="@+id/welcome_text"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/viewSpacing2"
+                android:layout_marginLeft="@dimen/viewSpacing5"
+                android:text="Welcome!"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/subheading2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/welcome_text"
+                android:layout_toRightOf="@+id/user_image"
+                android:layout_marginLeft="@dimen/viewSpacing5"
+                android:id="@+id/users_full_name"
+                android:text="Satyajit Namasudra"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/subheading2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/users_full_name"
+                android:layout_toRightOf="@+id/user_image"
+                android:layout_marginLeft="@dimen/viewSpacing5"
+                android:id="@+id/users_email"
+                android:text="satyajitnamasudra12174@gmail.com"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/subheading5" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/users_email"
+                android:layout_toRightOf="@+id/user_image"
+                android:layout_marginLeft="@dimen/viewSpacing5"
+                android:id="@+id/users_age"
+                android:textAlignment="textStart"
+                android:text="Age: 22"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/subheading4" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/users_age"
+                android:layout_toRightOf="@+id/user_image"
+                android:layout_marginLeft="@dimen/viewSpacing5"
+                android:id="@+id/users_gender"
+                android:textAlignment="textStart"
+                android:text="Gender: Male"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/subheading4" />
+        </RelativeLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/update_profile_button"
+            android:layout_marginLeft="@dimen/sideBorder"
+            android:layout_marginRight="@dimen/sideBorder"
+            android:layout_marginTop="@dimen/viewSpacing1"
+            android:layout_below="@+id/user_details_layout"
+            android:text="Update Profile"
+            android:background="@color/colorPrimary"/>
+
+
+    <Button
+        android:id="@+id/logout_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:background="@color/colorPrimary"
+        android:text="Log out"
+        android:textColor="#FFF" />
+    </RelativeLayout>
 
     <LinearLayout
         android:id="@+id/login_linear_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:visibility="invisible"
         android:orientation="vertical">
 
         <TextView
@@ -17,39 +120,6 @@
             android:text="Please Login To Access Your Profile"
             android:textColor="@color/colorPrimary"
             android:textSize="18sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:text="Username:"
-            android:textColor="@color/colorPrimary"
-            android:textSize="16sp" />
-
-        <EditText
-            android:id="@+id/login_username_et"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:background="@drawable/form_edit_text_style" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:text="Password:"
-            android:textColor="@color/colorPrimary"
-            android:textSize="16sp" />
-
-        <EditText
-            android:id="@+id/login_password_et"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:background="@drawable/form_edit_text_style"
-            android:inputType="textPassword" />
 
         <Button
             android:id="@+id/login_login_btn"
@@ -74,24 +144,5 @@
             android:textColor="#FFF" />
     </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/welcome_message"
-        android:text="Welcome"
-        android:layout_centerInParent="true"
-        android:textSize="@dimen/subheading2"
-        android:textColor="@color/colorPrimary"
-        />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/welcome_message"
-        android:layout_centerInParent="true"
-        android:background="@color/colorPrimary"
-        android:layout_marginTop="@dimen/viewSpacing3"
-        android:textColor="#FFF"
-        android:id="@+id/logout_button"
-        android:text="Log out"/>
 
 </RelativeLayout>

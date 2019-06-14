@@ -12,17 +12,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CompareListAdapter extends RecyclerView.Adapter<CompareListAdapter.CompareListViewHolder> {
 
     Context context;
     DatabaseHelper myDb;
-    private ArrayList<String> data;
+    //private ArrayList<String> data;
+    private java.util.List<String> keysList = new ArrayList<>();
+    private List<FoodItem> foodItems = new ArrayList<>();
 
-    public CompareListAdapter( Context context, ArrayList<String> data) {
-
-        this.data = data;
+    public CompareListAdapter(Context context, List<String> keysList, List<FoodItem> foodItems) {
         this.context = context;
+        this.keysList = keysList;
+        this.foodItems = foodItems;
     }
 
     @NonNull
@@ -36,85 +39,35 @@ public class CompareListAdapter extends RecyclerView.Adapter<CompareListAdapter.
     //Binding Data to the viewHolder
     @Override
     public void onBindViewHolder(@NonNull final CompareListViewHolder compareListViewHolder, int i) {
-        final String nbdno = data.get(i);
+        //final String nbdno = keysList.get(i);
+        compareListViewHolder.item.setText(foodItems.get(i).getName());
+        List<Nutrient> nutrient = foodItems.get(i).getNutrients();
+        for (int a = 0; a<nutrient.size(); a++ )
+        {
+            int id = Integer.parseInt(nutrient.get(a).getNutrientId());
+            switch (id){
+                case 203:
+                    compareListViewHolder.protein.setText(nutrient.get(a).getValue());
+                    break;
+                case 204:
+                    compareListViewHolder.fat.setText(nutrient.get(a).getValue());
+                    break;
+                case 205:
+                    compareListViewHolder.carbs.setText(nutrient.get(a).getValue());
+                case 208:
+                    compareListViewHolder.calories.setText(nutrient.get(a).getValue());
 
-        myDb = new DatabaseHelper(context);
-        String[] column = new String[5];
-        column[0]= "NAME";
-        column[1]= "ENERGY";
-        column[2]= "PROTEIN";
-        column[3]= "FAT";
-        column[4]= "CARBOHYDRATE";
-        for(int n= 0;n<column.length; n++){
-        switch (column[n]){
-            case "NAME":
-                Cursor res1 = myDb.getCompareFoodData("NAME", nbdno);
-                if(res1.getCount() ==0){
-                    Toast.makeText(context, "No data available", Toast.LENGTH_SHORT);
-                }
-
-                while(res1.moveToNext()){
-                    final StringBuffer buffer = new StringBuffer();
-                    buffer.append(res1.getString(0));
-                    compareListViewHolder.item.setText(buffer.toString());
-                }
-                break;
-            case "ENERGY":
-                Cursor res2 = myDb.getCompareFoodData( "ENERGY", nbdno);
-                if(res2.getCount() ==0){
-                    Toast.makeText(context, "No data available", Toast.LENGTH_SHORT);
-                }
-
-                while(res2.moveToNext()){
-                    StringBuffer buffer = new StringBuffer();
-                    buffer.append(res2.getString(0));
-                    compareListViewHolder.calories.setText(buffer.toString());
-                }
-                break;
-            case "PROTEIN":
-                Cursor res3 = myDb.getCompareFoodData( "PROTEIN",nbdno);
-                if(res3.getCount() ==0){
-                    Toast.makeText(context, "No data available", Toast.LENGTH_SHORT);
-                }
-
-                while(res3.moveToNext()){
-                    StringBuffer buffer = new StringBuffer();
-                    buffer.append(res3.getString(0));
-                    compareListViewHolder.protein.setText(buffer.toString());
-                }
-                break;
-            case "FAT":
-                Cursor res4 = myDb.getCompareFoodData("FAT",nbdno);
-                if(res4.getCount() ==0){
-                    Toast.makeText(context, "No data available", Toast.LENGTH_SHORT);
-                }
-
-                while(res4.moveToNext()){
-                    StringBuffer buffer = new StringBuffer();
-                    buffer.append(res4.getString(0));
-                    compareListViewHolder.fat.setText(buffer.toString());
-                }
-                break;
-            case "CARBOHYDRATE":
-                Cursor res5 = myDb.getCompareFoodData("CARBOHYDRATE",nbdno);
-                if(res5.getCount() ==0){
-                    Toast.makeText(context, "No data available", Toast.LENGTH_SHORT);
-                }
-
-                while(res5.moveToNext()){
-                    StringBuffer buffer = new StringBuffer();
-                    buffer.append(res5.getString(0));
-                    compareListViewHolder.carbs.setText(buffer.toString());
-                }
-                break;
+                    break;
+            }
         }
-        }
+
+
 
     }
 
     @Override
     public int getItemCount() {
-        return data.size();
+        return keysList.size();
     }
 
     public class CompareListViewHolder extends RecyclerView.ViewHolder{

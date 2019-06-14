@@ -73,22 +73,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/viewSpacing5"
-            android:text="Username: "
-            android:textColor="@color/colorPrimary"
-            android:textSize="@dimen/subheading3"/>
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/signup_username_et"
-            android:layout_marginBottom="@dimen/viewSpacing4"
-            android:layout_marginLeft="30dp"
-            android:background="@drawable/form_edit_text_style"
-            android:layout_marginRight="30dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/viewSpacing5"
             android:text="Password: "
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/subheading3"/>
@@ -102,21 +86,6 @@
             android:background="@drawable/form_edit_text_style"
             android:layout_marginRight="30dp"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/viewSpacing5"
-            android:text="Confirm Password: "
-            android:textColor="@color/colorPrimary"
-            android:textSize="@dimen/subheading3"/>
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/signup_confirm_password_et"
-            android:inputType="textPassword"
-            android:layout_marginLeft="30dp"
-            android:background="@drawable/form_edit_text_style"
-            android:layout_marginRight="30dp"/>
         <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

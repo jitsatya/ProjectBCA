@@ -41,7 +41,7 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/shopping_list_items_recycleview"
-        android:background="@color/light_orage_background"
+        android:background="@color/colorBackground"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/total_macros_relativeLayout"
@@ -61,98 +61,7 @@
         android:background="#80DFDFDF"
         android:layout_alignParentBottom="true">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
 
-            <LinearLayout
-                android:id="@+id/total_macros_linearlayout"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="8"
-                android:orientation="vertical"
-                android:padding="@dimen/viewSpacing5">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="#000"
-                    android:layout_gravity="right"
-                    android:text="Total Calories: "
-                    android:textSize="@dimen/subheading4" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="#000"
-                    android:layout_gravity="right"
-                    android:text="Total Protein: "
-                    android:textSize="@dimen/subheading4" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="#000"
-                    android:layout_gravity="right"
-                    android:text="Total Carbs: "
-                    android:textSize="@dimen/subheading4" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="#000"
-                    android:layout_gravity="right"
-                    android:text="Total Fat: "
-                    android:textSize="@dimen/subheading4" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/total_macros_linearlayout"
-                android:layout_weight="3"
-                android:orientation="vertical"
-                android:padding="@dimen/viewSpacing5">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/total_calories"
-                    android:maxLines="1"
-                    android:ellipsize="end"
-                    android:text="0.00"
-                    android:textSize="@dimen/subheading4" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/total_protein"
-                    android:maxLines="1"
-                    android:ellipsize="end"
-                    android:text="0.00"
-                    android:textSize="@dimen/subheading4" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/total_carbs"
-                    android:text="0.00"
-                    android:maxLines="1"
-                    android:ellipsize="end"
-                    android:textSize="@dimen/subheading4" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/total_fat"
-                    android:maxLines="1"
-                    android:ellipsize="end"
-                    android:text="0.00"
-                    android:textSize="@dimen/subheading4" />
-            </LinearLayout>
-        </LinearLayout>
     </RelativeLayout>
 
 

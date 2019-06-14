@@ -1,5 +1,6 @@
 package com.projects.satyajit.projectbca;
 
+import android.app.Activity;
 import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
@@ -10,13 +11,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.squareup.picasso.Picasso;
 
+import java.util.Date;
 import java.util.List;
 
 
 public class SearchListAdapter extends RecyclerView.Adapter<SearchListAdapter.SearchListViewHolder> {
+
     private Context context;
     private List<Item> items;
     private List<Hit> images;
@@ -42,12 +47,14 @@ public class SearchListAdapter extends RecyclerView.Adapter<SearchListAdapter.Se
             final Item item = items.get(position);
             final Hit image = images.get(position);
             searchListViewHolder.foodName.setText(item.getName());
-        Glide.with(context).load(image.getPreviewURL()).into(searchListViewHolder.foodImage);
+
+        Picasso.get().load(image.getPreviewURL()).into(searchListViewHolder.foodImage);
             //searchListViewHolder.foodImage.setImageResource(R.drawable.placeholder_image);
             searchListViewHolder.foodGroupName.setText(item.getGroup());
             searchListViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
                     Intent intent= new Intent(context,DetailedActivity.class);
                     intent.putExtra("ndbno", item.getNdbno());
                     intent.putExtra("name", item.getName());
